@@ -22,16 +22,6 @@ const currentProjects = [
   },
 ]
 
-const pastProjects = [
-  {
-    name: 'Responses',
-    description: 'Connecting creators with brand deals',
-    url: 'https://x.com/responsesapp',
-    display: 'responses.app',
-    badge: 'Acquired',
-    logo: '/responses-logo.png',
-  },
-]
 
 const socials = [
   { label: 'Instagram', url: 'https://instagram.com/jasonndeb' },
@@ -125,52 +115,6 @@ export default function HomePage() {
                 <span className="mt-0.5 ml-[28px] block text-sm text-muted">
                   {p.display}
                 </span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Past */}
-        <div className="space-y-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-muted">
-            Past
-          </p>
-          <div className="space-y-3">
-            {pastProjects.map((p) => (
-              <a
-                key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-lg bg-card-bg p-4 transition-transform duration-200 hover:scale-[1.02]"
-              >
-                <div className="flex items-center gap-2.5">
-                  <Image
-                    src={p.logo}
-                    alt={`${p.name} logo`}
-                    width={20}
-                    height={20}
-                    className="rounded-sm"
-                    unoptimized
-                  />
-                  <span className="font-medium text-foreground">{p.name}</span>
-                  <span className="text-muted">&mdash;</span>
-                  <span className="text-sm text-muted">{p.description}</span>
-                </div>
-                <div className="mt-0.5 ml-[28px] flex items-center gap-2">
-                  <span className="text-sm text-muted">
-                    {p.display}
-                  </span>
-                  {p.badge && (
-                    <span className="flex items-center gap-1.5 text-xs text-muted">
-                        <span className="relative flex h-2 w-2">
-                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500/60 dark:bg-green-400/50" />
-                          <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500 dark:bg-green-400" />
-                        </span>
-                        {p.badge}
-                    </span>
-                  )}
-                </div>
               </a>
             ))}
           </div>
