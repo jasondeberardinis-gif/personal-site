@@ -8,7 +8,7 @@ import { PixelWaves } from '@/components/PixelWaves'
 const currentProjects = [
   {
     name: 'Sheath',
-    description: 'Premium knife rolls for professional chefs',
+    description: 'Premium knife rolls for chefs',
     url: 'https://sheath.store',
     display: 'sheath.store',
     logo: 'https://www.google.com/s2/favicons?domain=sheath.store&sz=32',
