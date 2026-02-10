@@ -50,6 +50,7 @@ components/
 
 ## Dark Mode
 
+- Class-based dark mode using `@variant dark (&:where(.dark, .dark *))` in `globals.css` so Tailwind `dark:` utilities respond to the `.dark` class instead of the OS media query
 - Toggle in `components/ThemeToggle.tsx` adds/removes `.dark` on `<html>`
 - Persisted to `localStorage` under key `theme`
 - Inline `<script>` in `layout.tsx` reads localStorage before paint (no flash)

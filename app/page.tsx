@@ -26,7 +26,7 @@ const currentProjects = [
 const socials = [
   { label: 'Instagram', url: 'https://instagram.com/jasonndeb' },
   { label: 'LinkedIn', url: 'https://linkedin.com/in/jasondeberardinis' },
-  { label: 'GitHub', url: 'https://github.com/jasondeberardinis-gif' },
+  { label: 'GitHub', url: 'https://github.com/jasondeberardinis' },
 ]
 
 export default function HomePage() {
