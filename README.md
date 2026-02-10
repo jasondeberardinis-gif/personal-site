@@ -1,127 +1,64 @@
-# SHEATH Marketing Automation Dashboard
+# Jason DeBerardinis — Personal Site
 
-Internal marketing dashboard for SHEATH, connecting real data from Shopify, Klaviyo, and social media platforms into a unified view.
-
-## Current State
-
-The dashboard has 6 pages with a backend service layer and API routes. Pages currently display mock data but gracefully switch to live data once API keys are configured.
-
-| Page | Route | What It Shows | Data Source |
-|------|-------|---------------|-------------|
-| ROI Summary | `/` | Cart recovery, email revenue, repeat rate, time saved | Shopify + Klaviyo |
-| Content Studio | `/content` | Content generation UI with platform selector and previews | (AI — future) |
-| Analytics | `/analytics` | Email performance, social growth, revenue attribution, top posts | Klaviyo + Social APIs |
-| Email Flows | `/flows` | Interactive flowchart of automated email sequences | Klaviyo |
-| Calendar | `/calendar` | Monthly content calendar with platform filters and event popovers | Database (future) |
-| Segments | `/segments` | Customer segments with automation rules | Klaviyo |
+Minimal single-page portfolio site with dark mode, an animated pixel globe, project cards, and social links.
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4
-- **Charts**: Recharts
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Auth**: NextAuth.js v4 (credentials provider)
+- **Framework**: Next.js 16 (App Router), React 19
+- **Language**: TypeScript (strict)
+- **Styling**: Tailwind CSS 4 (inline config via `@theme inline` in `globals.css` — no `tailwind.config`)
+- **Animation**: Framer Motion 12
+- **Fonts**: Playfair Display 700 (name), Inter (everything else)
 - **Hosting**: Vercel
-
-## Integrations
-
-| Service | API | Status |
-|---------|-----|--------|
-| Shopify | Admin API | Service layer built, needs API key |
-| Klaviyo | API v2024-10-15 | Service layer built, needs API key |
-| Instagram | Meta Graph API | Service layer built, needs API key |
-| YouTube | Data API v3 | Service layer built, needs API key |
-| LinkedIn | Marketing API | Service layer built, needs API key |
-| X | API v2 | Service layer built, needs API key |
-
-## Getting Started
-
-```bash
-npm install
-cp .env.local.example .env.local
-```
-
-Edit `.env.local` with your credentials (at minimum, set auth credentials):
-
-```bash
-# Generate a secret
-openssl rand -base64 32
-```
-
-```env
-NEXTAUTH_SECRET=<paste-secret-here>
-NEXTAUTH_URL=http://localhost:3000
-ADMIN_EMAIL=you@sheath.store
-ADMIN_PASSWORD=your-password
-ADMIN_NAME=Your Name
-```
-
-Then start the dev server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000). You'll see a login page — sign in with your configured credentials.
 
 ## Project Structure
 
 ```
 app/
-  api/
-    auth/[...nextauth]/   # NextAuth.js API route
-    metrics/              # ROI metrics (Shopify)
-    analytics/            # Aggregated analytics
-    email/campaigns/      # Email campaign stats (Klaviyo)
-    email/flows/          # Email flow data (Klaviyo)
-    social/               # Social media metrics (all platforms)
-    segments/             # Customer segments (Klaviyo)
-    calendar/             # Calendar events (CRUD)
-  login/                  # Login page
-  (pages)/                # Dashboard pages (/, /analytics, /content, /flows, /calendar, /segments)
-
+├── page.tsx           # Single-page portfolio (client component)
+├── layout.tsx         # Root layout — fonts, inline theme script, metadata
+├── globals.css        # CSS variables (light + dark), @theme inline
+└── icon.svg           # Favicon
 components/
-  analytics/              # Chart components (email, social, revenue, top posts)
-  calendar/               # Calendar grid, event pills, content wrapper
-  content/                # Content studio UI and preview cards
-  flows/                  # Email flow visualization components
-  home/                   # Home page content
-  layout/                 # Sidebar, page transitions, AppShell
-  providers/              # SessionProvider
-  segments/               # Segment cards and charts
-  shared/                 # Reusable components (MetricCard, Badge, ChartCard, PageHeader)
-
-lib/
-  auth.ts                 # NextAuth.js configuration
-  constants.ts            # Brand colors, platform types, nav items
-  mock-data.ts            # Mock data (fallback when APIs not configured)
-  services/
-    shopify.ts            # Shopify Admin API client
-    klaviyo.ts            # Klaviyo API client
-    instagram.ts          # Instagram Graph API client
-    youtube.ts            # YouTube Data API client
-    linkedin.ts           # LinkedIn API client
-    x.ts                  # X API client
-
-middleware.ts             # Route protection (redirects to /login if unauthenticated)
-.env.local.example        # Environment variables template with setup guide
+├── PixelWaves.tsx     # Animated rotating pixel globe (canvas-based 3D sphere)
+└── ThemeToggle.tsx     # Sun/moon dark mode toggle (fixed top-right)
 ```
 
-## API Key Setup
+## Design Tokens
 
-See `.env.local.example` for detailed instructions on obtaining API keys for each service. Each integration is optional — the dashboard falls back to mock data when a service isn't configured.
+### Light Mode (`:root`)
 
-## Platforms
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--background` | `#FAFAF8` | Page background |
+| `--foreground` | `#1C1917` | Primary text |
+| `--muted` | `#78716C` | Secondary text |
+| `--accent` | `#64748B` | Links, highlights (slate-500) |
+| `--border` | `#E7E5E4` | Card borders |
+| `--card-bg` | `#FFFFFF` | Card backgrounds |
 
-The dashboard tracks these platforms: **Instagram**, **YouTube**, **Email**, **LinkedIn**, **X**
+### Dark Mode (`.dark`)
 
-## Build & Quality
+| Token | Value |
+|-------|-------|
+| `--background` | `#1C1917` |
+| `--foreground` | `#FAFAF8` |
+| `--muted` | `#A8A29E` |
+| `--accent` | `#94A3B8` |
+| `--border` | `#44403C` |
+| `--card-bg` | `#292524` |
+
+## Dark Mode
+
+- Toggle in `components/ThemeToggle.tsx` adds/removes `.dark` on `<html>`
+- Persisted to `localStorage` under key `theme`
+- Inline `<script>` in `layout.tsx` reads localStorage before paint (no flash)
+- `suppressHydrationWarning` on `<html>` to avoid React mismatch
+
+## Development
 
 ```bash
-npm run build            # Production build
-npm run lint             # ESLint
-./node_modules/.bin/tsc --noEmit  # TypeScript check
+npm run dev          # Start dev server
+npm run build        # Production build
+npm run lint         # ESLint
 ```

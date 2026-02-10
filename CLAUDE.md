@@ -19,13 +19,10 @@ app/
 ├── page.tsx              # Single-page personal site (client component)
 ├── layout.tsx            # Root layout — fonts, inline theme script, metadata
 ├── globals.css           # CSS variables (light + dark), @theme inline
-└── favicon.ico
+└── icon.svg              # Favicon
 components/
+├── PixelWaves.tsx        # Animated rotating pixel globe (canvas-based 3D sphere)
 └── ThemeToggle.tsx        # Sun/moon dark mode toggle (fixed top-right)
-public/
-├── headshot-placeholder.svg  # 80px circle with "JD" initials
-├── responses-logo.svg        # 32px "R" letter-mark placeholder
-└── headshot.jpg              # (swap in real photo later)
 ```
 
 ## Design Tokens
