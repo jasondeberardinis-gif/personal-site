@@ -62,7 +62,7 @@ export default function HomePage() {
         {/* Bio */}
         <p className="text-[15px] leading-relaxed text-foreground">
           I fell in love with the act of building products at a young age, now I
-          help grow tech companies at{' '}
+          grow tech companies at{' '}
           <a
             href="https://www.rivierapartners.com"
             target="_blank"
@@ -71,25 +71,7 @@ export default function HomePage() {
           >
             Riviera Partners
           </a>{' '}
-          while building{' '}
-          <a
-            href="https://sheath.store"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent underline decoration-accent/30 underline-offset-2 transition-colors hover:decoration-accent"
-          >
-            Sheath
-          </a>{' '}
-          and{' '}
-          <a
-            href="https://spoil.co"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent underline decoration-accent/30 underline-offset-2 transition-colors hover:decoration-accent"
-          >
-            Spoil
-          </a>
-          .
+          while growing my portfolio.
         </p>
 
         {/* Currently Building */}
